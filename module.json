@@ -1,0 +1,17 @@
+{
+    "name": "Activity",
+    "alias": "activity",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 100,
+    "providers": [
+        "Modules\\Activity\\Providers\\ActivityServiceProvider",
+        "Modules\\Activity\\Providers\\RouteServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        
+    ],
+    "requires": []
+}
