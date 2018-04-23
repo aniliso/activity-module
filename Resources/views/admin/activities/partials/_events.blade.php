@@ -5,7 +5,8 @@
             return [
                 'event_id'    => $event->id,
                 'location_id' => $event->location_id,
-                'event_at'    => $event->event_at->format('d.m.Y H:i')
+                'event_at'    => $event->event_at->format('d.m.Y H:i'),
+                'ticket_url'  => $event->ticket_url
             ];
         });
         $events = is_array(old('events')) && old('events') ? old('events', $events_data) : $events_data;
@@ -34,6 +35,12 @@
                     <div class="form-group">
                         <label v-if="key == 0" for="event_at">{{ trans('activity::activities.form.event_at') }}</label>
                         <date-picker :name="'events['+key+'][event_at]'" v-model="event.event_at" :config="config.datetime" placeholder="{{ trans('activity::activities.form.event_at') }}"></date-picker>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label v-if="key == 0" for="ticket_url">{{ trans('activity::activities.form.ticket_url') }}</label>
+                        <input :name="'events['+key+'][ticket_url]'" class="form-control" v-model="event.ticket_url" />
                     </div>
                 </div>
                 <div class="col-md-1" :style="key == 0 ? 'padding-top:35px' : ''">

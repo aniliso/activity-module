@@ -78,7 +78,8 @@ class ActivityController extends AdminBaseController
                 $new_event = new Event([
                     'activity_id' => $model->id,
                     'location_id' => $event['location_id'],
-                    'event_at'    => Carbon::parse($event['event_at'])
+                    'event_at'    => Carbon::parse($event['event_at']),
+                    'ticket_url'  => $event['ticket_url']
                 ]);
                 $model->events()->save($new_event);
             }
@@ -112,10 +113,11 @@ class ActivityController extends AdminBaseController
 
         if ($request->has('events') && is_array($request->get('events'))) {
             foreach ($request->get('events') as $event) {
-                $new_event = $activity->events()->findOrNew($event['event_id']);
+                $new_event = $model->events()->findOrNew($event['event_id']);
                 $new_event->activity_id  = $model->id;
                 $new_event->location_id  = $event['location_id'];
                 $new_event->event_at     = Carbon::parse($event['event_at']);
+                $new_event->ticket_url   = $event['ticket_url'];
                 $new_event->save();
             }
             $check_events = array_column($request->get('events'), 'event_id');

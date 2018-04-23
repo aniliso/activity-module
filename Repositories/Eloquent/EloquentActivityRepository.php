@@ -4,8 +4,8 @@ namespace Modules\Activity\Repositories\Eloquent;
 
 use Modules\Activity\Entities\Activity;
 use Modules\Activity\Entities\Event;
-use Modules\activity\Events\activity\ActivityIsUpdating;
-use Modules\activity\Events\activity\ActivityWasCreated;
+use Modules\Activity\Events\Activity\ActivityIsUpdating;
+use Modules\Activity\Events\Activity\ActivityWasCreated;
 use Modules\Activity\Repositories\ActivityRepository;
 use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 use Modules\Activity\Events\Activity\ActivityIsCreating;
@@ -44,7 +44,7 @@ class EloquentActivityRepository extends EloquentBaseRepository implements Activ
     public function getPreviousOf($activity)
     {
         return $this->model->where('created_at', '<', $activity->created_at)
-                           ->whereStatus(1)->orderBy('created_at', 'desc')->first();
+            ->whereStatus(1)->orderBy('created_at', 'desc')->first();
     }
 
     /**
@@ -55,7 +55,7 @@ class EloquentActivityRepository extends EloquentBaseRepository implements Activ
     public function getNextOf($activity)
     {
         return $this->model->where('created_at', '>', $activity->created_at)
-                           ->whereStatus(1)->first();
+            ->whereStatus(1)->first();
     }
 
     public function latest($amount = 10)

@@ -50,8 +50,6 @@
 
                     {!! Form::normalInput('sorting', trans('activity::activities.form.sorting'), $errors) !!}
 
-                    {!! Form::normalInput('ticket_url', trans('activity::activities.form.ticket_url'), $errors) !!}
-
                     {!! Form::normalInput('video_url', trans('activity::activities.form.video_url'), $errors) !!}
 
                     {!! Form::normalCheckbox('status', trans('activity::activities.form.status'), $errors) !!}

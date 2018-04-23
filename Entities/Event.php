@@ -11,14 +11,15 @@ class Event extends Model
 
     public $timestamps = true;
     protected $table = 'activity__activity_events';
-    protected $fillable = ['location_id', 'activity_id','event_at'];
+    protected $fillable = ['location_id', 'activity_id','event_at','ticket_url'];
 
     protected $dates = [
       'event_at',
     ];
 
     protected $with = [
-      'location'
+      'location',
+      'activity'
     ];
 
     protected $presenter = EventPresenter::class;
