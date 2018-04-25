@@ -3,6 +3,7 @@
 namespace Modules\Activity\Entities;
 
 use Dimsav\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 use Modules\Activity\Presenters\ActivityPresenter;
@@ -46,6 +47,18 @@ class Activity extends Model
 
     public function scopeActivated($query)
     {
-        return $query->whereStatus(1);
+        return $query->whereHas("events", function(Builder $q){
+            $q->activated();
+        })->whereStatus(1);
+    }
+
+    public function scopeWithTransRelated($query)
+    {
+        return $query->with(['translations','events','category']);
+    }
+
+    public function scopeWithRelated($query)
+    {
+        return $query->with(['events', 'category']);
     }
 }

@@ -36,7 +36,7 @@ class Event extends Model
 
     public function scopeActivated($query)
     {
-        return $query->where('event_at', '>=', Carbon::now()->format('Y-m-d H:i'));
+        return $query->where('event_at', '>=', Carbon::now());
     }
 
     public function scopeOrdered($query)

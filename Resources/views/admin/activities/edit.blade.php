@@ -39,7 +39,7 @@
         <div class="col-md-3">
             <div class="box">
                 <div class="box-body">
-                    {!! Form::normalSelect('category_id', trans('activity::activities.form.category_id'), $errors, $categoryLists) !!}
+                    {!! Form::normalSelect('category_id', trans('activity::activities.form.category_id'), $errors, $categoryLists, $activity) !!}
                     {!! Form::normalInput('video_url', trans('activity::activities.form.video_url'), $errors, $activity) !!}
                     {!! Form::normalInput('sorting', trans('activity::activities.form.sorting'), $errors, $activity) !!}
                     {!! Form::normalCheckbox('status', trans('activity::activities.form.status'), $errors, $activity) !!}

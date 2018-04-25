@@ -93,6 +93,7 @@ class ActivityController extends BasePublicController
         if(is_null($category)) abort(404);
 
         $activities = $category->activities()
+                            ->withRelated()
                             ->orderByEvents()
                             ->activated()
                             ->paginate($this->per_page);

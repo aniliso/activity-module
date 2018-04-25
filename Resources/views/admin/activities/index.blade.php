@@ -33,7 +33,7 @@
                             <th>{{ trans('activity::activities.form.sorting') }}</th>
                             <th>{{ trans('activity::activities.form.category_id') }}</th>
                             <th>{{ trans('activity::activities.form.title') }}</th>
-                            <th>{{ trans('activity::activities.form.slug') }}</th>
+                            <th>{{ trans('activity::activities.form.event_at') }}</th>
                             <th>{{ trans('core::core.table.created at') }}</th>
                             <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                         </tr>
@@ -45,7 +45,7 @@
                             <td>{{ $activity->id }}</td>
                             <td>{{ $activity->sorting }}</td>
                             <td>
-                                <a href="{{ route('admin.activity.activity.edit', [$activity->id]) }}">
+                                <a href="{{ route('admin.activity.category.edit', [$activity->category->id]) }}">
                                     {{ $activity->category->title }}
                                 </a>
                             </td>
@@ -55,9 +55,7 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ route('admin.activity.activity.edit', [$activity->id]) }}">
-                                    {{ $activity->slug }}
-                                </a>
+                                {!! $activity->events()->get()->map(function($event){ return $event->event_at->format('d.m.Y H:i'); })->implode('<br/>') !!}
                             </td>
                             <td>
                                 <a href="{{ route('admin.activity.activity.edit', [$activity->id]) }}">
@@ -74,12 +72,6 @@
                         <?php endforeach; ?>
                         <?php endif; ?>
                         </tbody>
-                        <tfoot>
-                        <tr>
-                            <th>{{ trans('core::core.table.created at') }}</th>
-                            <th>{{ trans('core::core.table.actions') }}</th>
-                        </tr>
-                        </tfoot>
                     </table>
                     <!-- /.box-body -->
                     </div>
